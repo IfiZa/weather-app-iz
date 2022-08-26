@@ -1,12 +1,205 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
+    <title>WeatherApp by IZ</title>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Weather App by IZ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="src/styles.css" type="text/css" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
+
   <body>
-    Hello GitHub
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 g-2 g-md-3">
+        <div class="col">
+          <div class="card p-3 h-100" id="current-data-card">
+            <h1>
+              <span class="city">Brussels</span>
+              <span class="country">BE</span>
+            </h1>
+            <small class="current-date">Thursday 04 August 2022, 15:00</small>
+
+            <img
+              src="images\icons\sunny.png"
+              alt="Sunny Icon"
+              class="icon-current"
+            />
+            <span class="current-temperature">
+              <span class="temperature-value">27</span>
+              <span class="temperature-units">
+                <a href="#" class="unit-celsius">°C </a>
+                |
+                <a href="#" class="unit-fahrenheit">°F </a>
+              </span>
+            </span>
+            <small class="weather-description">
+              <span class="weather-description-word">Sunny</span>
+              <br />
+              <span class="min-max-temp">Min 16°C / Max 28°C</span>
+            </small>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card p-3 mb-2 mb-md-3" id="extra-data-card">
+            <div class="card-body p-0 text-center">
+              <div class="row row-cols-2 row-cols-md-3 g-3">
+                <div class="col">
+                  Real Feel
+                  <br />
+                  <span id="real-feel">28°C</span>
+                </div>
+                <div class="col">
+                  Humidity
+                  <br />
+                  <span id="humidity">70%</span>
+                </div>
+                <div class="col">
+                  Wind
+                  <br />
+                  <span id="wind">21 m/s</span>
+                </div>
+                <div class="col">
+                  Pressure
+                  <br />
+                  <span id="pressure">1000 hPa</span>
+                </div>
+                <div class="col">
+                  Sunrise
+                  <br />
+                  <span id="sunrise">06:10</span>
+                </div>
+                <div class="col">
+                  Sunset
+                  <br />
+                  <span id="sunset">20:59</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card p-3" id="search-card">
+            <div class="card-body p-0">
+              <form id="search-form">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Type a city name"
+                  autocomplete="off"
+                  id="search-input"
+                />
+                <button
+                  type="submit"
+                  class="btn btn-light p-1 mt-2"
+                  id="search-button"
+                >
+                  Search
+                </button>
+                <button
+                  type="submit"
+                  class="btn btn-light p-1 mt-2"
+                  id="current-button"
+                >
+                  Current
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <h3>Next 6 days</h3>
+      <div class="row row-cols-2 row-cols-sm-3 row-cols-md-6 g-2 g-md-3">
+        <div class="col">
+          <div class="card text-center border-light mb-3 h-100 opacity-85">
+            <div class="card-body">
+              <h5 class="card-next-day">Fri 05/08</h5>
+              <img
+                src="images\icons\clear-sky.png"
+                class="card-img-top"
+                alt="Clear Sky"
+              />
+              <p class="card-next-day-MinMax">17°C / 29°C</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card text-center border-light mb-3 h-100 opacity-85">
+            <div class="card-body">
+              <h5 class="card-next-day">Sat 06/08</h5>
+              <img
+                src="images\icons\sunny.png"
+                class="card-img-top"
+                alt="Sunny"
+              />
+              <p class="card-next-day-MinMax">17°C / 28°C</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card text-center border-light mb-3 h-100 opacity-85">
+            <div class="card-body">
+              <h5 class="card-next-day">Sun 07/08</h5>
+              <img
+                src="images\icons\cloud.png"
+                class="card-img-top"
+                alt="Cloudy"
+              />
+              <p class="card-next-day-MinMax">15°C / 24°C</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card text-center border-light mb-3 h-100 opacity-85">
+            <div class="card-body">
+              <h5 class="card-next-day">Mon 08/08</h5>
+              <img
+                src="images\icons\clear-sky.png"
+                class="card-img-top"
+                alt="Clear Sky"
+              />
+              <p class="card-next-day-MinMax">15°C / 25°C</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card text-center border-light mb-3 h-100 opacity-85">
+            <div class="card-body">
+              <h5 class="card-next-day">Tue 09/08</h5>
+              <img
+                src="images\icons\sunny.png"
+                class="card-img-top"
+                alt="Sunny"
+              />
+              <p class="card-next-day-MinMax">18°C / 30°C</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card text-center border-light mb-3 h-100 opacity-85">
+            <div class="card-body">
+              <h5 class="card-next-day">Wed 10/08</h5>
+              <img
+                src="images\icons\sunny.png"
+                class="card-img-top"
+                alt="Sunny"
+              />
+              <p class="card-next-day-MinMax">18°C / 30°C</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="src/script.js"></script>
   </body>
 </html>
