@@ -1,0 +1,133 @@
+body {
+  font-family: "Montserrat", sans-serif;
+  background-image: url("../images/doodles/SunnyDoodle.jpg");
+  background-color: #efe4d2;
+  background-attachment: scroll;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+}
+h1 {
+  text-shadow: 2px 2px 3px rgb(174, 192, 178);
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 12px;
+  font-weight: 600;
+  padding-left: 10px;
+}
+h5 {
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 0px;
+  padding: 10px 0;
+  line-height: 1.5;
+}
+small {
+  display: block;
+  padding: 5px;
+  line-height: 1.5;
+}
+
+input::placeholder {
+  font-size: 14px;
+  color: rgb(116, 126, 119);
+}
+
+.container {
+  background-color: rgb(174, 192, 178, 0.7);
+  border: 2px solid rgb(116, 126, 119);
+  border-radius: 4px;
+  box-shadow: 2px 2px 3px rgb(116, 126, 119);
+  padding: 15px;
+  width: 75%;
+  max-width: 750px;
+  margin: 50px auto;
+}
+.country {
+  font-size: small;
+  position: relative;
+  top: -15px;
+}
+
+.icon-current {
+  display: block;
+  margin: 20px 0;
+  width: 80px;
+}
+.temperature-value {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 0px;
+  padding: 10px 5px;
+}
+.temperature-units {
+  font-size: 15px;
+  top: -15px;
+  position: relative;
+}
+.unit-celsius:link {
+  color: black;
+  font-weight: 900;
+  text-decoration: none;
+}
+.unit-fahrenheit:link {
+  color: blue;
+  font-weight: 300;
+  text-decoration: none;
+}
+.unit-celsius:visited {
+  color: blue;
+  font-weight: 300;
+  text-decoration: none;
+}
+.unit-fahrenheit:visited {
+  color: black;
+  font-weight: 900;
+  text-decoration: none;
+}
+.weather-description-word {
+  text-transform: capitalize;
+}
+.form-control:focus {
+  border-color: rgb(116, 126, 119);
+  box-shadow: 0px 0px 10px rgb(116, 126, 119);
+}
+.btn {
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 2px 2px 3px rgb(116, 126, 119);
+  padding: 5px;
+}
+.btn:hover {
+  background-color: rgb(174, 192, 178);
+  color: white;
+  transition-duration: 200ms;
+}
+.card.text-center.border-light.mb-3.h-100 {
+  box-shadow: 5px 5px 5px rgb(116, 126, 119);
+}
+.card-img-top {
+  display: block;
+  margin: 10px auto;
+  width: 50px;
+}
+.card-next-day-MinMax {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 10px 0;
+  margin: 0 auto;
+}
+
+#current-data-card,
+#extra-data-card,
+#search-card {
+  box-shadow: 5px 5px 5px rgb(116, 126, 119);
+}
+#extra-data-card {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+}
