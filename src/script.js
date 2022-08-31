@@ -7,7 +7,7 @@ function showCurrentWeather(response) {
 
   document.querySelector(".country").innerHTML = response.data.sys.country;
 
-  document.querySelector(".temperature-value").innerHTML = Math.round(
+  document.querySelector(".temperature").innerHTML = Math.round(
     response.data.main.temp
   );
 
@@ -118,7 +118,7 @@ now.innerHTML = `${day}, ${date} ${month} ${year}, ${hours}:${minutes}`;
 
 function convertToF(event) {
   event.preventDefault();
-  let tempFahrenheit = document.querySelector(".temperature-value");
+  let tempFahrenheit = document.querySelector(".temperature");
   let temperature = tempFahrenheit.innerHTML;
   temperature = Number(temperature);
   tempFahrenheit.innerHTML = Math.round((temperature * 9) / 5 + 32);
@@ -129,7 +129,7 @@ linkFahrenheit.addEventListener("click", convertToF);
 
 function convertToC(event) {
   event.preventDefault();
-  let temperature = document.querySelector(".temperature-value");
+  let temperature = document.querySelector(".temperature");
   temperature.innerHTML = 27;
 }
 

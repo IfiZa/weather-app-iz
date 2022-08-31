@@ -61,11 +61,11 @@ input::placeholder {
   margin-right: 10px;
   width: 80px;
 }
-.temperature-value {
+.temperature {
   font-size: 36px;
   padding: 15px 5px;
 }
-.temperature-units {
+.units {
   font-size: 15px;
   top: -15px;
   position: relative;
