@@ -2,7 +2,7 @@ body {
   font-family: "Montserrat", sans-serif;
   background-image: url("../images/doodles/SunnyDoodle.jpg");
   background-color: #efe4d2;
-  background-attachment: scroll;
+  background-attachment: fixed;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -52,16 +52,18 @@ input::placeholder {
   top: -15px;
 }
 
+.weather-temperature {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
 .icon-current {
   display: block;
-  margin: 20px 0;
+  margin-right: 10px;
   width: 80px;
 }
 .temperature-value {
   font-size: 36px;
-  font-weight: 700;
-  margin-bottom: 0px;
-  padding: 10px 5px;
+  padding: 15px 5px;
 }
 .temperature-units {
   font-size: 15px;
@@ -117,7 +119,6 @@ input::placeholder {
 .card-next-day-MinMax {
   font-size: 12px;
   font-weight: 700;
-  padding: 10px 0;
   margin: 0 auto;
 }
 .hosting {
