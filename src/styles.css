@@ -90,7 +90,7 @@ input::placeholder {
   font-weight: 900;
   text-decoration: none;
 }
-.weather-description-word {
+.weather-description {
   text-transform: capitalize;
 }
 .form-control:focus {

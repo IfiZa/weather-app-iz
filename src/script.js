@@ -12,7 +12,7 @@ function showCurrentWeather(response) {
   );
 
   document.querySelector(
-    ".weather-description-word"
+    ".weather-description"
   ).innerHTML = `${response.data.weather[0].description}`;
 
   document.querySelector(".min-max-temp").innerHTML = `Min ${Math.round(
@@ -72,6 +72,7 @@ function retrieveCurrentPosition(position) {
 }
 
 function getCurrentLocation(event) {
+  event.preventDefault();
   navigator.geolocation.getCurrentPosition(retrieveCurrentPosition);
 }
 
