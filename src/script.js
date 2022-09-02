@@ -3,37 +3,27 @@
 //changeBackGroundBody();
 
 function showCurrentWeather(response) {
-  document.querySelector(".city").innerHTML = response.data.name;
+  let cityElement = document.querySelector(".city");
+  let countryElement = document.querySelector(".country");
+  let temperatureElement = document.querySelector(".temperature");
+  let descriptionElement = document.querySelector(".weather-description");
+  let minMaxElement = document.querySelector(".min-max-temp");
+  let realFeelElement = document.querySelector("#real-feel");
+  let humidityElement = document.querySelector("#humidity");
+  let windElement = document.querySelector("#wind");
+  let pressureElement = document.querySelector("#pressure");
 
-  document.querySelector(".country").innerHTML = response.data.sys.country;
-
-  document.querySelector(".temperature").innerHTML = Math.round(
-    response.data.main.temp
-  );
-
-  document.querySelector(
-    ".weather-description"
-  ).innerHTML = `${response.data.weather[0].description}`;
-
-  document.querySelector(".min-max-temp").innerHTML = `Min ${Math.round(
+  cityElement.innerHTML = response.data.name;
+  countryElement.innerHTML = response.data.sys.country;
+  temperatureElement.innerHTML = Math.round(response.data.main.temp);
+  descriptionElement.innerHTML = `${response.data.weather[0].description}`;
+  minMaxElement.innerHTML = `Min ${Math.round(
     response.data.main.temp_min
   )}°C / Max ${Math.round(response.data.main.temp_max)}°C`;
-
-  document.querySelector("#real-feel").innerHTML = `${Math.round(
-    response.data.main.feels_like
-  )}°C`;
-
-  document.querySelector("#humidity").innerHTML = `${Math.round(
-    response.data.main.humidity
-  )}%`;
-
-  document.querySelector("#wind").innerHTML = `${Math.round(
-    response.data.wind.speed
-  )} m/s`;
-
-  document.querySelector("#pressure").innerHTML = `${Math.round(
-    response.data.main.pressure
-  )} hPa`;
+  realFeelElement.innerHTML = `${Math.round(response.data.main.feels_like)}°C`;
+  humidityElement.innerHTML = `${Math.round(response.data.main.humidity)}%`;
+  windElement.innerHTML = `${Math.round(response.data.wind.speed)} m/s`;
+  pressureElement.innerHTML = `${Math.round(response.data.main.pressure)} hPa`;
 }
 
 // Search city
