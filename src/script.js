@@ -12,6 +12,7 @@ function showCurrentWeather(response) {
   let humidityElement = document.querySelector("#humidity");
   let windElement = document.querySelector("#wind");
   let pressureElement = document.querySelector("#pressure");
+  let dateElement = document.querySelector(".date");
 
   cityElement.innerHTML = response.data.name;
   countryElement.innerHTML = response.data.sys.country;
@@ -24,6 +25,7 @@ function showCurrentWeather(response) {
   humidityElement.innerHTML = `${Math.round(response.data.main.humidity)}%`;
   windElement.innerHTML = `${Math.round(response.data.wind.speed)} m/s`;
   pressureElement.innerHTML = `${Math.round(response.data.main.pressure)} hPa`;
+  dateElement.innerHTML = formatDate(response.data.dt * 1000);
 }
 
 // Search city
@@ -70,40 +72,31 @@ let currentButton = document.querySelector("#current-button");
 currentButton.addEventListener("click", getCurrentLocation);
 
 // Date display
+function formatDate(timestamp) {
+  let today = new Date(timestamp);
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  let day = days[today.getDay()];
+  let date = today.getDate();
+  let hours = String(today.getHours()).padStart(2, "0");
+  let minutes = String(today.getMinutes()).padStart(2, "0");
+  let months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  let month = months[today.getMonth()];
 
-let today = new Date();
-let days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednseday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
-let day = days[today.getDay()];
-let date = today.getDate();
-let months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
-let month = months[today.getMonth()];
-let year = today.getFullYear();
-let hours = String(today.getHours()).padStart(2, "0");
-let minutes = String(today.getMinutes()).padStart(2, "0");
-
-let now = document.querySelector(".current-date");
-now.innerHTML = `${day}, ${date} ${month} ${year}, ${hours}:${minutes}`;
+  return `${day} ${date} ${month}, ${hours}:${minutes}`;
+}
 
 // Fahrenheit conversion
 
