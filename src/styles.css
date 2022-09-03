@@ -66,8 +66,8 @@ input::placeholder {
   padding: 15px 5px;
 }
 .units {
-  font-size: 15px;
-  top: -18px;
+  font-size: 14px;
+  top: -20px;
   position: relative;
 }
 .unit-celsius:link {
