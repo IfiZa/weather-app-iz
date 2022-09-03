@@ -73,21 +73,10 @@ function showCurrentWeather(response) {
   sunsetElement.innerHTML = formatSunset(response.data.sys.sunset * 1000);
   dateElement.innerHTML = formatDate(response.data.dt * 1000);
   iconElement.setAttribute("alt", response.data.weather[0].description);
-  if (descriptionElement.innerHTML === "clear sky") {
-    iconElement.setAttribute("src", "sunny.png");
-  } else if (descriptionElement.innerHTML === "few clouds") {
-    iconElement.setAttribute("src", "few clouds.png");
-  } else if (
-    descriptionElement.innerHTML === "scattered clouds" ||
-    descriptionElement.innerHTML === "broken clouds"
-  ) {
-    iconElement.setAttribute("src", "imagesiconsscattered_broken clouds.png");
-  } else if (
-    descriptionElement.innerHTML === "scattered clouds" ||
-    descriptionElement.innerHTML === "broken clouds"
-  ) {
-    iconElement.setAttribute("src", "scattered_broken clouds.png");
-  }
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
 }
 
 // Search city
