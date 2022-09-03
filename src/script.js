@@ -83,12 +83,14 @@ function showCurrentWeather(response) {
     iconElement.setAttribute("src", `images/icons/snow.png`);
   } else if (iconMainCode === "Mist" || iconMainCode === "Fog") {
     iconElement.setAttribute("src", `images/icons/fog.png`);
-  } else if (descriptionElement.innerHTML === "few clouds") {
+  } else if (
+    descriptionElement.innerHTML === "few clouds" ||
+    descriptionElement.innerHTML === "scattered clouds"
+  ) {
     iconElement.setAttribute("src", `images/icons/few clouds.png`);
   } else if (iconMainCode === "Mist" || iconMainCode === "Fog") {
     iconElement.setAttribute("src", `images/icons/fog.png`);
   } else if (
-    descriptionElement.innerHTML === "scattered clouds" ||
     descriptionElement.innerHTML === "broken clouds" ||
     descriptionElement.innerHTML === "overcast clouds"
   ) {
