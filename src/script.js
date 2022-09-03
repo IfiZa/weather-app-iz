@@ -38,7 +38,6 @@ function formatDate(timestamp) {
     "Dec",
   ];
   let month = months[today.getMonth()];
-
   return `${day} ${date} ${month}, ${hours}:${minutes}`;
 }
 
@@ -57,6 +56,7 @@ function showCurrentWeather(response) {
   let sunsetElement = document.querySelector("#sunset");
   let dateElement = document.querySelector("#date");
   let iconElement = document.querySelector("#icon");
+  let iconMainCode = response.data.weather[0].main;
 
   cityElement.innerHTML = response.data.name;
   countryElement.innerHTML = response.data.sys.country;
@@ -73,10 +73,27 @@ function showCurrentWeather(response) {
   sunsetElement.innerHTML = formatSunset(response.data.sys.sunset * 1000);
   dateElement.innerHTML = formatDate(response.data.dt * 1000);
   iconElement.setAttribute("alt", response.data.weather[0].description);
-  iconElement.setAttribute(
-    "src",
-    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
-  );
+  if (iconMainCode === "Clear") {
+    iconElement.setAttribute("src", `images/icons/sunny.png`);
+  } else if (iconMainCode === "Thunderstorm") {
+    iconElement.setAttribute("src", `images/icons/thunderstorm.png`);
+  } else if (iconMainCode === "Drizzle" || iconMainCode === "Rain") {
+    iconElement.setAttribute("src", `images/icons/shower rain.png`);
+  } else if (iconMainCode === "Snow") {
+    iconElement.setAttribute("src", `images/icons/snow.png`);
+  } else if (iconMainCode === "Mist" || iconMainCode === "Fog") {
+    iconElement.setAttribute("src", `images/icons/fog.png`);
+  } else if (descriptionElement.innerHTML === "few clouds") {
+    iconElement.setAttribute("src", `images/icons/few clouds.png`);
+  } else if (iconMainCode === "Mist" || iconMainCode === "Fog") {
+    iconElement.setAttribute("src", `images/icons/fog.png`);
+  } else if (
+    descriptionElement.innerHTML === "scattered clouds" ||
+    descriptionElement.innerHTML === "broken clouds" ||
+    descriptionElement.innerHTML === "overcast clouds"
+  ) {
+    iconElement.setAttribute("src", `images/icons/cloudy.png`);
+  }
 }
 
 // Search city
