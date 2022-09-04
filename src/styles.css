@@ -2,7 +2,7 @@ body {
   font-family: "Montserrat", sans-serif;
   background-image: url("../images/doodles/SunnyDoodle.jpg");
   background-color: #efe4d2;
-  background-attachment: fixed;
+  background-attachment: scroll;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
