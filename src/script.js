@@ -57,6 +57,7 @@ function showCurrentWeather(response) {
   let dateElement = document.querySelector("#date");
   let iconElement = document.querySelector("#icon");
   let iconMainCode = response.data.weather[0].main;
+  let containerElement = document.querySelector(".container");
 
   cityElement.innerHTML = response.data.name;
   countryElement.innerHTML = response.data.sys.country;
@@ -75,12 +76,20 @@ function showCurrentWeather(response) {
   iconElement.setAttribute("alt", response.data.weather[0].description);
   if (iconMainCode === "Clear") {
     iconElement.setAttribute("src", `images/icons/sunny.png`);
+    document.body.style.backgroundImage =
+      "url('images/doodles/SunnyDoodle.jpg')";
   } else if (iconMainCode === "Thunderstorm") {
     iconElement.setAttribute("src", `images/icons/thunderstorm.png`);
+    document.body.style.backgroundImage =
+      "url('images/doodles/StormyDoodle.jpg')";
   } else if (iconMainCode === "Drizzle" || iconMainCode === "Rain") {
     iconElement.setAttribute("src", `images/icons/shower rain.png`);
+    document.body.style.backgroundImage =
+      "url('images/doodles/RainyDoodle.jpg')";
   } else if (iconMainCode === "Snow") {
     iconElement.setAttribute("src", `images/icons/snow.png`);
+    document.body.style.backgroundImage =
+      "url('images/doodles/SnowyDoodle.jpg')";
   } else if (iconMainCode === "Mist" || iconMainCode === "Fog") {
     iconElement.setAttribute("src", `images/icons/fog.png`);
   } else if (
@@ -88,6 +97,8 @@ function showCurrentWeather(response) {
     descriptionElement.innerHTML === "scattered clouds"
   ) {
     iconElement.setAttribute("src", `images/icons/few clouds.png`);
+    document.body.style.backgroundImage =
+      "url('images/doodles/SunCloudDoodle.jpg')";
   } else if (iconMainCode === "Mist" || iconMainCode === "Fog") {
     iconElement.setAttribute("src", `images/icons/fog.png`);
   } else if (
@@ -95,6 +106,8 @@ function showCurrentWeather(response) {
     descriptionElement.innerHTML === "overcast clouds"
   ) {
     iconElement.setAttribute("src", `images/icons/cloudy.png`);
+    document.body.style.backgroundImage =
+      "url('images/doodles/CloudyDoodle.jpg')";
   }
 }
 
