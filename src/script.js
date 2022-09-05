@@ -1,7 +1,3 @@
-//function changeBackGroundBody() {
-//document.body.style.backgroundImage = "url('images/doodles/RainyDoodle.jpg')";}
-//changeBackGroundBody();
-
 function formatSunrise(timestamp) {
   let sunriseTime = new Date(timestamp);
   let hours = String(sunriseTime.getHours()).padStart(2, "0");
