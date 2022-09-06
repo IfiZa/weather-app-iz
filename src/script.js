@@ -1,17 +1,3 @@
-function formatSunrise(timestamp) {
-  let sunriseTime = new Date(timestamp);
-  let hours = String(sunriseTime.getHours()).padStart(2, "0");
-  let minutes = String(sunriseTime.getMinutes()).padStart(2, "0");
-  return `${hours}:${minutes}`;
-}
-
-function formatSunset(timestamp) {
-  let sunsetTime = new Date(timestamp);
-  let hours = String(sunsetTime.getHours()).padStart(2, "0");
-  let minutes = String(sunsetTime.getMinutes()).padStart(2, "0");
-  return `${hours}:${minutes}`;
-}
-
 function formatDate(timestamp) {
   let today = new Date(timestamp);
   let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -35,6 +21,20 @@ function formatDate(timestamp) {
   ];
   let month = months[today.getMonth()];
   return `${day} ${date} ${month}, ${hours}:${minutes}`;
+}
+
+function formatSunrise(timestamp) {
+  let sunriseTime = new Date(timestamp);
+  let hours = String(sunriseTime.getHours()).padStart(2, "0");
+  let minutes = String(sunriseTime.getMinutes()).padStart(2, "0");
+  return `${hours}:${minutes}`;
+}
+
+function formatSunset(timestamp) {
+  let sunsetTime = new Date(timestamp);
+  let hours = String(sunsetTime.getHours()).padStart(2, "0");
+  let minutes = String(sunsetTime.getMinutes()).padStart(2, "0");
+  return `${hours}:${minutes}`;
 }
 
 function showCurrentWeather(response) {
@@ -107,8 +107,6 @@ function showCurrentWeather(response) {
   }
 }
 
-// Search city
-
 function searchCity(city) {
   if (city.length === 0) {
     alert("Please type a city!");
@@ -126,13 +124,6 @@ function handleSubmit(event) {
   searchCity(city);
 }
 
-let searchForm = document.querySelector("#search-form");
-searchForm.addEventListener("submit", handleSubmit);
-
-searchCity("Brussels");
-
-// Current city weather
-
 function retrieveCurrentPosition(position) {
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
@@ -147,13 +138,6 @@ function getCurrentLocation(event) {
   navigator.geolocation.getCurrentPosition(retrieveCurrentPosition);
 }
 
-let currentButton = document.querySelector("#current-button");
-currentButton.addEventListener("click", getCurrentLocation);
-
-// Date display
-
-// Fahrenheit conversion
-
 function convertToF(event) {
   event.preventDefault();
   let tempFahrenheit = document.querySelector(".temperature");
@@ -162,14 +146,22 @@ function convertToF(event) {
   tempFahrenheit.innerHTML = Math.round((temperature * 9) / 5 + 32);
 }
 
-let linkFahrenheit = document.querySelector(".unit-fahrenheit");
-linkFahrenheit.addEventListener("click", convertToF);
-
 function convertToC(event) {
   event.preventDefault();
   let temperature = document.querySelector(".temperature");
   temperature.innerHTML = 27;
 }
 
+let searchForm = document.querySelector("#search-form");
+searchForm.addEventListener("submit", handleSubmit);
+
+let currentButton = document.querySelector("#current-button");
+currentButton.addEventListener("click", getCurrentLocation);
+
+let linkFahrenheit = document.querySelector(".unit-fahrenheit");
+linkFahrenheit.addEventListener("click", convertToF);
+
 let linkCelsius = document.querySelector(".unit-celsius");
 linkCelsius.addEventListener("click", convertToC);
+
+searchCity("Brussels");
