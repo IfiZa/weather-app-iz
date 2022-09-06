@@ -74,29 +74,22 @@ input::placeholder {
 }
 .units {
   font-size: 14px;
-  top: -20px;
   position: relative;
+  top: -20px;
+  text-decoration: none;
 }
-.unit-celsius:link {
-  color: black;
+
+.weather-temperature .active {
+  color: rgb(33, 37, 41);
+  cursor: default;
   font-weight: 900;
   text-decoration: none;
 }
-.unit-fahrenheit:link {
-  color: blue;
-  font-weight: 300;
+
+.weather-temperature .active:hover {
   text-decoration: none;
 }
-.unit-celsius:visited {
-  color: blue;
-  font-weight: 300;
-  text-decoration: none;
-}
-.unit-fahrenheit:visited {
-  color: black;
-  font-weight: 900;
-  text-decoration: none;
-}
+
 .weather-description {
   text-transform: capitalize;
 }

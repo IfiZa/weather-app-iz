@@ -38,7 +38,6 @@ function formatSunset(timestamp) {
 }
 
 function showCurrentWeather(response) {
-  console.log(response);
   let cityElement = document.querySelector(".city");
   let countryElement = document.querySelector(".country");
   let temperatureElement = document.querySelector(".temperature");
@@ -54,6 +53,8 @@ function showCurrentWeather(response) {
   let iconElement = document.querySelector("#icon");
   let iconMainCode = response.data.weather[0].main;
   let containerElement = document.querySelector(".container");
+
+  temperatureCelcious = response.data.main.temp;
 
   cityElement.innerHTML = response.data.name;
   countryElement.innerHTML = response.data.sys.country;
@@ -140,16 +141,19 @@ function getCurrentLocation(event) {
 
 function convertToF(event) {
   event.preventDefault();
-  let tempFahrenheit = document.querySelector(".temperature");
-  let temperature = tempFahrenheit.innerHTML;
-  temperature = Number(temperature);
-  tempFahrenheit.innerHTML = Math.round((temperature * 9) / 5 + 32);
+  let tempFahrenheit = Math.round((temperatureCelcious * 9) / 5 + 32);
+  let temperatureElement = document.querySelector(".temperature");
+  temperatureElement.innerHTML = tempFahrenheit;
+  linkCelsius.classList.remove("active");
+  linkFahrenheit.classList.add("active");
 }
 
 function convertToC(event) {
   event.preventDefault();
-  let temperature = document.querySelector(".temperature");
-  temperature.innerHTML = 27;
+  let temperatureElement = document.querySelector(".temperature");
+  temperatureElement.innerHTML = Math.round(temperatureCelcious);
+  linkFahrenheit.classList.remove("active");
+  linkCelsius.classList.add("active");
 }
 
 let searchForm = document.querySelector("#search-form");
@@ -157,6 +161,8 @@ searchForm.addEventListener("submit", handleSubmit);
 
 let currentButton = document.querySelector("#current-button");
 currentButton.addEventListener("click", getCurrentLocation);
+
+let temperatureCelcious = null;
 
 let linkFahrenheit = document.querySelector(".unit-fahrenheit");
 linkFahrenheit.addEventListener("click", convertToF);
