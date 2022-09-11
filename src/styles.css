@@ -110,9 +110,7 @@ input::placeholder {
   font-weight: 700;
   transition-duration: 200ms;
 }
-.card.text-center.border-light.mb-3.h-100 {
-  box-shadow: 5px 5px 5px rgb(116, 126, 119);
-}
+
 .card-img-top {
   display: block;
   margin: 10px auto;

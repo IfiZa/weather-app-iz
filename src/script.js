@@ -37,6 +37,34 @@ function formatSunset(timestamp) {
   return `${hours}:${minutes}`;
 }
 
+function showForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = `<div class="row row-cols-2 row-cols-sm-3 row-cols-md-6 g-2">`;
+  let days = ["Mon", "Tue", "Wed"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+    <div class="col">
+    <div class="card text-center border-light mb-2 h-100 opacity-85">
+      <div class="card-body" style="box-shadow:5px 5px 5px rgb(116, 126, 119); border-radius:4px">
+        <h5 class="card-next-day">${day}</h5>
+        <img
+          src="images/icons/few clouds.png"
+          class="card-img-top"
+          alt="Clear Sky"
+        />
+        <p class="card-next-day-MinMax">17°C / 29°C</p>
+      </div>
+    </div>
+  </div>
+  `;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 function showCurrentWeather(response) {
   let cityElement = document.querySelector(".city");
   let countryElement = document.querySelector(".country");
@@ -171,3 +199,4 @@ let linkCelsius = document.querySelector(".unit-celsius");
 linkCelsius.addEventListener("click", convertToC);
 
 searchCity("Brussels");
+showForecast();
