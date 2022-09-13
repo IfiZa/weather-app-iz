@@ -121,6 +121,7 @@ input::placeholder {
   font-size: 12px;
   font-weight: 700;
   margin: 0 auto;
+  padding-top: 10px;
 }
 .hosting {
   font-size: 12px;
