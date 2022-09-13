@@ -1,3 +1,5 @@
+// function for last updated
+
 function formatDate(timestamp) {
   let today = new Date(timestamp);
   let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -23,6 +25,8 @@ function formatDate(timestamp) {
   return `${day} ${date} ${month}, ${hours}:${minutes}`;
 }
 
+// functions for sunset/sunrise
+
 function formatSunrise(timestamp) {
   let sunriseTime = new Date(timestamp);
   let hours = String(sunriseTime.getHours()).padStart(2, "0");
@@ -36,6 +40,8 @@ function formatSunset(timestamp) {
   let minutes = String(sunsetTime.getMinutes()).padStart(2, "0");
   return `${hours}:${minutes}`;
 }
+
+// function for forecast
 
 function formatForecastDate(timestamp) {
   let today = new Date(timestamp);
@@ -89,6 +95,8 @@ function getForecast(coordinates) {
   axios.get(apiUrl).then(showForecast);
 }
 
+// functions for current weather
+
 function showCurrentWeather(response) {
   let cityElement = document.querySelector(".city");
   let countryElement = document.querySelector(".country");
@@ -104,7 +112,6 @@ function showCurrentWeather(response) {
   let dateElement = document.querySelector("#date");
   let iconElement = document.querySelector("#icon");
   let iconMainCode = response.data.weather[0].main;
-  // let containerElement = document.querySelector(".container");
 
   temperatureCelcious = response.data.main.temp;
 
@@ -162,6 +169,8 @@ function showCurrentWeather(response) {
   getForecast(response.data.coord);
 }
 
+// function for search city
+
 function searchCity(city) {
   if (city.length === 0) {
     alert("Please type a city!");
@@ -179,6 +188,8 @@ function handleSubmit(event) {
   searchCity(city);
 }
 
+// functions for current location
+
 function retrieveCurrentPosition(position) {
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
@@ -192,6 +203,8 @@ function getCurrentLocation(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(retrieveCurrentPosition);
 }
+
+// C/F conversion functions
 
 function convertToF(event) {
   event.preventDefault();
@@ -209,6 +222,8 @@ function convertToC(event) {
   linkFahrenheit.classList.remove("active");
   linkCelsius.classList.add("active");
 }
+
+// global variables
 
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", handleSubmit);
