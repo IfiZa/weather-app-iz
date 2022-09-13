@@ -220,7 +220,7 @@ function showCurrentWeather(response) {
 
 function searchCity(city) {
   if (city.length === 0) {
-    alert("Please type a city!");
+    alert("Please type a city! 🏘");
   } else {
     let apiKey = "4d99823db795b130f19970ddc3b4eb81";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
