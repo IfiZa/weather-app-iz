@@ -1,4 +1,4 @@
-// function for last updated
+// function for Last Updated
 
 function formatDate(timestamp) {
   let today = new Date(timestamp);
@@ -25,7 +25,7 @@ function formatDate(timestamp) {
   return `${day} ${date} ${month}, ${hours}:${minutes}`;
 }
 
-// functions for sunset/sunrise
+// functions for Sunset/Sunrise
 
 function formatSunrise(timestamp) {
   let sunriseTime = new Date(timestamp);
@@ -41,7 +41,7 @@ function formatSunset(timestamp) {
   return `${hours}:${minutes}`;
 }
 
-// function for forecast
+// functions for Forecast
 
 function formatForecastDate(timestamp) {
   let today = new Date(timestamp);
@@ -59,6 +59,37 @@ function showForecast(response) {
 
   forecast.forEach(function (forecastDay, index) {
     if (index > 0 && index < 7) {
+      let iconForecastElement = document.querySelector("#icon-forecast");
+      let forecastMainCode = forecastDay.weather[0].main;
+
+      if (forecastMainCode === "Clear") {
+        iconForecastElement = "images/icons/sunny.png";
+      }
+      if (forecastMainCode === "Thunderstorm") {
+        iconForecastElement = "images/icons/thunderstorm.png";
+      }
+      if (forecastMainCode === "Drizzle" || forecastMainCode === "Rain") {
+        iconForecastElement = "images/icons/shower rain.png";
+      }
+      if (forecastMainCode === "Snow") {
+        iconForecastElement = "images/icons/snow.png";
+      }
+      if (forecastMainCode === "Mist" || forecastMainCode === "Fog") {
+        iconForecastElement = "images/icons/fog.png";
+      }
+      if (
+        forecastDay.weather[0].description === "few clouds" ||
+        forecastDay.weather[0].description === "scattered clouds"
+      ) {
+        iconForecastElement = "images/icons/few clouds.png";
+      }
+      if (
+        forecastDay.weather[0].description === "broken clouds" ||
+        forecastDay.weather[0].description === "overcast clouds"
+      ) {
+        iconForecastElement = "images/icons/cloudy.png";
+      }
+
       forecastHTML =
         forecastHTML +
         `
@@ -68,10 +99,9 @@ function showForecast(response) {
         <h5 class="card-next-day">${formatForecastDate(
           forecastDay.dt * 1000
         )}</h5>
-        <img
-          src=""
+        <img src="${iconForecastElement}"
           class="card-img-top"
-          alt="Clear Sky"
+          alt="${forecastDay.weather[0].description}"
           id="icon-forecast"
         />
         <p class="card-next-day-MinMax">${Math.round(
@@ -95,69 +125,84 @@ function getForecast(coordinates) {
   axios.get(apiUrl).then(showForecast);
 }
 
-// functions for current weather
+// functions for Current Weather
 
 function showCurrentWeather(response) {
   let cityElement = document.querySelector(".city");
-  let countryElement = document.querySelector(".country");
-  let temperatureElement = document.querySelector(".temperature");
-  let descriptionElement = document.querySelector(".weather-description");
-  let minMaxElement = document.querySelector(".min-max-temp");
-  let realFeelElement = document.querySelector("#real-feel");
-  let humidityElement = document.querySelector("#humidity");
-  let windElement = document.querySelector("#wind");
-  let pressureElement = document.querySelector("#pressure");
-  let sunriseElement = document.querySelector("#sunrise");
-  let sunsetElement = document.querySelector("#sunset");
-  let dateElement = document.querySelector("#date");
-  let iconElement = document.querySelector("#icon");
-  let iconMainCode = response.data.weather[0].main;
-
-  temperatureCelcious = response.data.main.temp;
-
   cityElement.innerHTML = response.data.name;
+
+  let countryElement = document.querySelector(".country");
   countryElement.innerHTML = response.data.sys.country;
+
+  let temperatureElement = document.querySelector(".temperature");
   temperatureElement.innerHTML = Math.round(response.data.main.temp);
+
+  let descriptionElement = document.querySelector(".weather-description");
   descriptionElement.innerHTML = `${response.data.weather[0].description}`;
+
+  let minMaxElement = document.querySelector(".min-max-temp");
   minMaxElement.innerHTML = `Min ${Math.round(
     response.data.main.temp_min
   )}°C / Max ${Math.round(response.data.main.temp_max)}°C`;
+
+  let realFeelElement = document.querySelector("#real-feel");
   realFeelElement.innerHTML = `${Math.round(response.data.main.feels_like)}°C`;
+
+  let humidityElement = document.querySelector("#humidity");
   humidityElement.innerHTML = `${Math.round(response.data.main.humidity)}%`;
+
+  let windElement = document.querySelector("#wind");
   windElement.innerHTML = `${Math.round(response.data.wind.speed)} m/s`;
+
+  let pressureElement = document.querySelector("#pressure");
   pressureElement.innerHTML = `${Math.round(response.data.main.pressure)} hPa`;
+
+  let sunriseElement = document.querySelector("#sunrise");
   sunriseElement.innerHTML = formatSunrise(response.data.sys.sunrise * 1000);
+
+  let sunsetElement = document.querySelector("#sunset");
   sunsetElement.innerHTML = formatSunset(response.data.sys.sunset * 1000);
+
+  let dateElement = document.querySelector("#date");
   dateElement.innerHTML = formatDate(response.data.dt * 1000);
+
+  let iconElement = document.querySelector("#icon");
+  let iconMainCode = response.data.weather[0].main;
+
   iconElement.setAttribute("alt", response.data.weather[0].description);
+
   if (iconMainCode === "Clear") {
     iconElement.setAttribute("src", `images/icons/sunny.png`);
     document.body.style.backgroundImage =
       "url('images/doodles/SunnyDoodle.jpg')";
-  } else if (iconMainCode === "Thunderstorm") {
+  }
+  if (iconMainCode === "Thunderstorm") {
     iconElement.setAttribute("src", `images/icons/thunderstorm.png`);
     document.body.style.backgroundImage =
       "url('images/doodles/StormyDoodle.jpg')";
-  } else if (iconMainCode === "Drizzle" || iconMainCode === "Rain") {
+  }
+  if (iconMainCode === "Drizzle" || iconMainCode === "Rain") {
     iconElement.setAttribute("src", `images/icons/shower rain.png`);
     document.body.style.backgroundImage =
       "url('images/doodles/RainyDoodle.jpg')";
-  } else if (iconMainCode === "Snow") {
+  }
+  if (iconMainCode === "Snow") {
     iconElement.setAttribute("src", `images/icons/snow.png`);
     document.body.style.backgroundImage =
       "url('images/doodles/SnowyDoodle.jpg')";
-  } else if (iconMainCode === "Mist" || iconMainCode === "Fog") {
+  }
+  if (iconMainCode === "Mist" || iconMainCode === "Fog") {
     iconElement.setAttribute("src", `images/icons/fog.png`);
-  } else if (
+  }
+  if (
     descriptionElement.innerHTML === "few clouds" ||
     descriptionElement.innerHTML === "scattered clouds"
   ) {
     iconElement.setAttribute("src", `images/icons/few clouds.png`);
     document.body.style.backgroundImage =
       "url('images/doodles/SunCloudDoodle.jpg')";
-  } else if (iconMainCode === "Mist" || iconMainCode === "Fog") {
-    iconElement.setAttribute("src", `images/icons/fog.png`);
-  } else if (
+  }
+  if (
     descriptionElement.innerHTML === "broken clouds" ||
     descriptionElement.innerHTML === "overcast clouds"
   ) {
@@ -166,10 +211,12 @@ function showCurrentWeather(response) {
       "url('images/doodles/CloudyDoodle.jpg')";
   }
 
+  temperatureCelcious = response.data.main.temp;
+
   getForecast(response.data.coord);
 }
 
-// function for search city
+// functions for Search City
 
 function searchCity(city) {
   if (city.length === 0) {
@@ -188,7 +235,7 @@ function handleSubmit(event) {
   searchCity(city);
 }
 
-// functions for current location
+// functions for Current Location
 
 function retrieveCurrentPosition(position) {
   let lat = position.coords.latitude;
@@ -204,7 +251,7 @@ function getCurrentLocation(event) {
   navigator.geolocation.getCurrentPosition(retrieveCurrentPosition);
 }
 
-// C/F conversion functions
+// functions for C/F Conversion
 
 function convertToF(event) {
   event.preventDefault();
@@ -223,7 +270,7 @@ function convertToC(event) {
   linkCelsius.classList.add("active");
 }
 
-// global variables
+// Global Variables
 
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", handleSubmit);
