@@ -47,6 +47,7 @@ function formatForecastDate(timestamp) {
 }
 
 function showForecast(response) {
+  console.log(response);
   let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = `<div class="row row-cols-2 row-cols-sm-3 row-cols-md-6 g-2">`;
@@ -63,9 +64,10 @@ function showForecast(response) {
           forecastDay.dt * 1000
         )}</h5>
         <img
-          src="images/icons/few clouds.png"
+          src=""
           class="card-img-top"
           alt="Clear Sky"
+          id="icon-forecast"
         />
         <p class="card-next-day-MinMax">${Math.round(
           forecastDay.temp.min
