@@ -126,6 +126,15 @@ input::placeholder {
   font-size: 12px;
   text-align: center;
 }
+.vector-source {
+  text-decoration: none;
+  color: black;
+}
+
+.vector-source:hover {
+  text-decoration: underline;
+  color: black;
+}
 
 #current-data-card,
 #extra-data-card,
