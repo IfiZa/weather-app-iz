@@ -37,29 +37,44 @@ function formatSunset(timestamp) {
   return `${hours}:${minutes}`;
 }
 
+function formatForecastDate(timestamp) {
+  let today = new Date(timestamp);
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  let day = days[today.getDay()];
+  let date = today.getDate();
+  let month = today.getMonth() + 1;
+  return `${day} ${date}/${month}`;
+}
+
 function showForecast(response) {
-  console.log(response.data.daily);
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = `<div class="row row-cols-2 row-cols-sm-3 row-cols-md-6 g-2">`;
-  let days = ["Mon", "Tue", "Wed"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
+
+  forecast.forEach(function (forecastDay, index) {
+    if (index > 0 && index < 7) {
+      forecastHTML =
+        forecastHTML +
+        `
     <div class="col">
     <div class="card text-center border-light mb-2 h-100 opacity-85">
       <div class="card-body" style="box-shadow:5px 5px 5px rgb(116, 126, 119); border-radius:4px">
-        <h5 class="card-next-day">${day}</h5>
+        <h5 class="card-next-day">${formatForecastDate(
+          forecastDay.dt * 1000
+        )}</h5>
         <img
           src="images/icons/few clouds.png"
           class="card-img-top"
           alt="Clear Sky"
         />
-        <p class="card-next-day-MinMax">17°C / 29°C</p>
+        <p class="card-next-day-MinMax">${Math.round(
+          forecastDay.temp.min
+        )}°C / ${Math.round(forecastDay.temp.max)}°C</p>
       </div>
     </div>
   </div>
   `;
+    }
   });
 
   forecastHTML = forecastHTML + `</div>`;
@@ -67,7 +82,6 @@ function showForecast(response) {
 }
 
 function getForecast(coordinates) {
-  console.log(coordinates);
   let apiKey = "017d56650cd168d68067850318775d43";
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
 
@@ -89,7 +103,7 @@ function showCurrentWeather(response) {
   let dateElement = document.querySelector("#date");
   let iconElement = document.querySelector("#icon");
   let iconMainCode = response.data.weather[0].main;
-  let containerElement = document.querySelector(".container");
+  // let containerElement = document.querySelector(".container");
 
   temperatureCelcious = response.data.main.temp;
 
