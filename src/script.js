@@ -81,8 +81,6 @@ function getForecast(coordinates) {
 // function for Current Weather
 
 function showCurrentWeather(response) {
-  console.log(response);
-
   let cityElement = document.querySelector(".city");
   cityElement.innerHTML = response.data.name;
 
@@ -137,12 +135,53 @@ function showCurrentWeather(response) {
   dateElement.innerHTML = formatDate(response.data.dt * 1000);
 
   let iconElement = document.querySelector("#icon");
-  let iconMainCode = response.data.weather[0].main;
+  let iconCode = response.data.weather[0].icon;
   iconElement.setAttribute("alt", response.data.weather[0].description);
-  iconElement.setAttribute(
-    "src",
-    `images/icons/${response.data.weather[0].icon}.png`
-  );
+  iconElement.setAttribute("src", `images/icons/${iconCode}.png`);
+
+  if (iconCode === "01d") {
+    document.body.style.backgroundImage = "url(images/doodles/01d.jpg)";
+    document.querySelector(".container").style.backgroundColor =
+      "rgb(174, 192, 178, 0.7);";
+  } else if (iconCode === "01n" || iconCode === "02n") {
+    document.body.style.backgroundImage = "url(images/doodles/01n.jpg)";
+    document.querySelector(".container").style.backgroundColor =
+      "rgb(116, 163, 176, 0.8)";
+  } else if (iconCode === "02d") {
+    document.body.style.backgroundImage = "url(images/doodles/02d.jpg)";
+    document.querySelector(".container").style.backgroundColor =
+      "rgb(200, 178, 120, 0.4)";
+  } else if (
+    iconCode === "03d" ||
+    iconCode === "03n" ||
+    iconCode === "04d" ||
+    iconCode === "04n"
+  ) {
+    document.body.style.backgroundImage = "url(images/doodles/03.jpg)";
+    document.querySelector(".container").style.backgroundColor =
+      "rgb(151, 179, 183, 0.6)";
+  } else if (
+    iconCode === "09d" ||
+    iconCode === "09n" ||
+    iconCode === "10d" ||
+    iconCode === "10n"
+  ) {
+    document.body.style.backgroundImage = "url(images/doodles/09.jpg)";
+    document.querySelector(".container").style.backgroundColor =
+      "rgb(174, 192, 178, 0.7);";
+  } else if (iconCode === "11d" || iconCode === "11n") {
+    document.body.style.backgroundImage = "url(images/doodles/11.jpg)";
+    document.querySelector(".container").style.backgroundColor =
+      "rgb(172, 198, 187, 0.7)";
+  } else if (iconCode === "13d" || iconCode === "13n") {
+    document.body.style.backgroundImage = "url(images/doodles/13d.jpg)";
+    document.querySelector(".container").style.backgroundColor =
+      "rgb(249, 236, 228, 0.6);";
+  } else if (iconCode === "50d" || iconCode === "50n") {
+    document.body.style.backgroundImage = "url(images/doodles/50d.jpg)";
+    document.querySelector(".container").style.backgroundColor =
+      "rgb(221, 205, 184, 0.6)";
+  }
 
   getForecast(response.data.coord);
 }

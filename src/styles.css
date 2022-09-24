@@ -1,7 +1,6 @@
 body {
   font-family: "Montserrat", sans-serif;
-  background-image: url("../images/doodles/01d.jpg");
-  background-color: #efe4d2;
+  background-color: #e9f7f8;
   background-attachment: scroll;
   background-position: center;
   background-size: cover;
@@ -44,7 +43,7 @@ input::placeholder {
 }
 
 .container {
-  background-color: rgb(174, 192, 178, 0.7);
+  background-color: rgb(174, 192, 178, 0.6);
   border: 2px solid rgb(116, 126, 119);
   border-radius: 4px;
   box-shadow: 2px 2px 3px rgb(116, 126, 119);
