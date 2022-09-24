@@ -25,22 +25,6 @@ function formatDate(timestamp) {
   return `${day} ${date} ${month}, ${hours}:${minutes}`;
 }
 
-// functions for Sunset/Sunrise
-
-function formatSunrise(timestamp) {
-  let sunriseTime = new Date(timestamp);
-  let hours = String(sunriseTime.getHours()).padStart(2, "0");
-  let minutes = String(sunriseTime.getMinutes()).padStart(2, "0");
-  return `${hours}:${minutes}`;
-}
-
-function formatSunset(timestamp) {
-  let sunsetTime = new Date(timestamp);
-  let hours = String(sunsetTime.getHours()).padStart(2, "0");
-  let minutes = String(sunsetTime.getMinutes()).padStart(2, "0");
-  return `${hours}:${minutes}`;
-}
-
 // functions for Forecast
 
 function formatForecastDate(timestamp) {
@@ -125,7 +109,7 @@ function getForecast(coordinates) {
   axios.get(apiUrl).then(showForecast);
 }
 
-// functions for Current Weather
+// function for Current Weather
 
 function showCurrentWeather(response) {
   let cityElement = document.querySelector(".city");
@@ -157,11 +141,26 @@ function showCurrentWeather(response) {
   let pressureElement = document.querySelector("#pressure");
   pressureElement.innerHTML = `${Math.round(response.data.main.pressure)} hPa`;
 
-  let sunriseElement = document.querySelector("#sunrise");
-  sunriseElement.innerHTML = formatSunrise(response.data.sys.sunrise * 1000);
+  let localDate = new Date();
+  let localOffset = localDate.getTimezoneOffset() * 60000;
 
-  let sunsetElement = document.querySelector("#sunset");
-  sunsetElement.innerHTML = formatSunset(response.data.sys.sunset * 1000);
+  let sunriseElement = document.querySelector("#sunrise");
+  let sunriseUnix = response.data.sys.sunrise * 1000;
+  let sunriseUTC = sunriseUnix + localOffset;
+  let sunriseTime = new Date(sunriseUTC + 1000 * response.data.timezone);
+  let sunriseHours = String(sunriseTime.getHours()).padStart(2, `0`);
+  let sunriseMinutes = String(sunriseTime.getMinutes()).padStart(2, `0`);
+  let sunrise = `${sunriseHours}:${sunriseMinutes}`;
+  sunriseElement.innerHTML = sunrise;
+
+  let sunsetElement = document.querySelector(`#sunset`);
+  let sunsetUnix = response.data.sys.sunset * 1000;
+  let sunsetUTC = sunsetUnix + localOffset;
+  let sunsetTime = new Date(sunsetUTC + 1000 * response.data.timezone);
+  let sunsetHours = String(sunsetTime.getHours()).padStart(2, `0`);
+  let sunsetMinutes = String(sunsetTime.getMinutes()).padStart(2, `0`);
+  let sunset = `${sunsetHours}:${sunsetMinutes}`;
+  sunsetElement.innerHTML = sunset;
 
   let dateElement = document.querySelector("#date");
   dateElement.innerHTML = formatDate(response.data.dt * 1000);
@@ -210,8 +209,6 @@ function showCurrentWeather(response) {
     document.body.style.backgroundImage =
       "url('images/doodles/CloudyDoodle.jpg')";
   }
-
-  temperatureCelcious = response.data.main.temp;
 
   getForecast(response.data.coord);
 }
