@@ -251,25 +251,6 @@ function getCurrentLocation(event) {
   navigator.geolocation.getCurrentPosition(retrieveCurrentPosition);
 }
 
-// functions for C/F Conversion
-
-function convertToF(event) {
-  event.preventDefault();
-  let tempFahrenheit = Math.round((temperatureCelcious * 9) / 5 + 32);
-  let temperatureElement = document.querySelector(".temperature");
-  temperatureElement.innerHTML = tempFahrenheit;
-  linkCelsius.classList.remove("active");
-  linkFahrenheit.classList.add("active");
-}
-
-function convertToC(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector(".temperature");
-  temperatureElement.innerHTML = Math.round(temperatureCelcious);
-  linkFahrenheit.classList.remove("active");
-  linkCelsius.classList.add("active");
-}
-
 // Global Variables
 
 let searchForm = document.querySelector("#search-form");
@@ -277,13 +258,5 @@ searchForm.addEventListener("submit", handleSubmit);
 
 let currentButton = document.querySelector("#current-button");
 currentButton.addEventListener("click", getCurrentLocation);
-
-let temperatureCelcious = null;
-
-let linkFahrenheit = document.querySelector(".unit-fahrenheit");
-linkFahrenheit.addEventListener("click", convertToF);
-
-let linkCelsius = document.querySelector(".unit-celsius");
-linkCelsius.addEventListener("click", convertToC);
 
 searchCity("Brussels");

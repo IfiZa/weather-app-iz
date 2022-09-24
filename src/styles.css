@@ -72,22 +72,11 @@ input::placeholder {
   font-size: 42px;
   padding: 15px 5px;
 }
-.units {
-  font-size: 14px;
+.unit {
+  font-size: 18px;
+  font-weight: 600;
   position: relative;
-  top: -20px;
-  text-decoration: none;
-}
-
-.weather-temperature .active {
-  color: rgb(33, 37, 41);
-  cursor: default;
-  font-weight: 900;
-  text-decoration: none;
-}
-
-.weather-temperature .active:hover {
-  text-decoration: none;
+  top: -16px;
 }
 
 .weather-description {
