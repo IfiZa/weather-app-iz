@@ -43,37 +43,6 @@ function showForecast(response) {
 
   forecast.forEach(function (forecastDay, index) {
     if (index > 0 && index < 7) {
-      let iconForecastElement = document.querySelector("#icon-forecast");
-      let forecastMainCode = forecastDay.weather[0].main;
-
-      if (forecastMainCode === "Clear") {
-        iconForecastElement = "images/icons/sunny.png";
-      }
-      if (forecastMainCode === "Thunderstorm") {
-        iconForecastElement = "images/icons/thunderstorm.png";
-      }
-      if (forecastMainCode === "Drizzle" || forecastMainCode === "Rain") {
-        iconForecastElement = "images/icons/shower rain.png";
-      }
-      if (forecastMainCode === "Snow") {
-        iconForecastElement = "images/icons/snow.png";
-      }
-      if (forecastMainCode === "Mist" || forecastMainCode === "Fog") {
-        iconForecastElement = "images/icons/fog.png";
-      }
-      if (
-        forecastDay.weather[0].description === "few clouds" ||
-        forecastDay.weather[0].description === "scattered clouds"
-      ) {
-        iconForecastElement = "images/icons/few clouds.png";
-      }
-      if (
-        forecastDay.weather[0].description === "broken clouds" ||
-        forecastDay.weather[0].description === "overcast clouds"
-      ) {
-        iconForecastElement = "images/icons/cloudy.png";
-      }
-
       forecastHTML =
         forecastHTML +
         `
@@ -83,7 +52,7 @@ function showForecast(response) {
         <h5 class="card-next-day">${formatForecastDate(
           forecastDay.dt * 1000
         )}</h5>
-        <img src="${iconForecastElement}"
+        <img src="images/icons/${forecastDay.weather[0].icon}.png"
           class="card-img-top"
           alt="${forecastDay.weather[0].description}"
           id="icon-forecast"
@@ -112,6 +81,8 @@ function getForecast(coordinates) {
 // function for Current Weather
 
 function showCurrentWeather(response) {
+  console.log(response);
+
   let cityElement = document.querySelector(".city");
   cityElement.innerHTML = response.data.name;
 
@@ -167,48 +138,11 @@ function showCurrentWeather(response) {
 
   let iconElement = document.querySelector("#icon");
   let iconMainCode = response.data.weather[0].main;
-
   iconElement.setAttribute("alt", response.data.weather[0].description);
-
-  if (iconMainCode === "Clear") {
-    iconElement.setAttribute("src", `images/icons/sunny.png`);
-    document.body.style.backgroundImage =
-      "url('images/doodles/SunnyDoodle.jpg')";
-  }
-  if (iconMainCode === "Thunderstorm") {
-    iconElement.setAttribute("src", `images/icons/thunderstorm.png`);
-    document.body.style.backgroundImage =
-      "url('images/doodles/StormyDoodle.jpg')";
-  }
-  if (iconMainCode === "Drizzle" || iconMainCode === "Rain") {
-    iconElement.setAttribute("src", `images/icons/shower rain.png`);
-    document.body.style.backgroundImage =
-      "url('images/doodles/RainyDoodle.jpg')";
-  }
-  if (iconMainCode === "Snow") {
-    iconElement.setAttribute("src", `images/icons/snow.png`);
-    document.body.style.backgroundImage =
-      "url('images/doodles/SnowyDoodle.jpg')";
-  }
-  if (iconMainCode === "Mist" || iconMainCode === "Fog") {
-    iconElement.setAttribute("src", `images/icons/fog.png`);
-  }
-  if (
-    descriptionElement.innerHTML === "few clouds" ||
-    descriptionElement.innerHTML === "scattered clouds"
-  ) {
-    iconElement.setAttribute("src", `images/icons/few clouds.png`);
-    document.body.style.backgroundImage =
-      "url('images/doodles/SunCloudDoodle.jpg')";
-  }
-  if (
-    descriptionElement.innerHTML === "broken clouds" ||
-    descriptionElement.innerHTML === "overcast clouds"
-  ) {
-    iconElement.setAttribute("src", `images/icons/cloudy.png`);
-    document.body.style.backgroundImage =
-      "url('images/doodles/CloudyDoodle.jpg')";
-  }
+  iconElement.setAttribute(
+    "src",
+    `images/icons/${response.data.weather[0].icon}.png`
+  );
 
   getForecast(response.data.coord);
 }
