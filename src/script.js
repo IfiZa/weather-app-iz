@@ -142,7 +142,7 @@ function showCurrentWeather(response) {
   if (iconCode === "01d") {
     document.body.style.backgroundImage = "url(images/doodles/01d.jpg)";
     document.querySelector(".container").style.backgroundColor =
-      "rgb(174, 192, 178, 0.7);";
+      "rgb(174, 192, 178, 0.7)";
   } else if (iconCode === "01n" || iconCode === "02n") {
     document.body.style.backgroundImage = "url(images/doodles/01n.jpg)";
     document.querySelector(".container").style.backgroundColor =
@@ -159,24 +159,23 @@ function showCurrentWeather(response) {
   ) {
     document.body.style.backgroundImage = "url(images/doodles/03.jpg)";
     document.querySelector(".container").style.backgroundColor =
-      "rgb(151, 179, 183, 0.6)";
-  } else if (
-    iconCode === "09d" ||
-    iconCode === "09n" ||
-    iconCode === "10d" ||
-    iconCode === "10n"
-  ) {
+      "rgb(171, 184, 174, 0.7)";
+  } else if (iconCode === "09d" || iconCode === "09n") {
     document.body.style.backgroundImage = "url(images/doodles/09.jpg)";
     document.querySelector(".container").style.backgroundColor =
-      "rgb(174, 192, 178, 0.7);";
+      "rgb(174, 192, 178, 0.7)";
+  } else if (iconCode === "10d" || iconCode === "10n") {
+    document.body.style.backgroundImage = "url(images/doodles/10.jpg)";
+    document.querySelector(".container").style.backgroundColor =
+      "rgb(174, 192, 178, 0.7)";
   } else if (iconCode === "11d" || iconCode === "11n") {
     document.body.style.backgroundImage = "url(images/doodles/11.jpg)";
     document.querySelector(".container").style.backgroundColor =
       "rgb(172, 198, 187, 0.7)";
   } else if (iconCode === "13d" || iconCode === "13n") {
-    document.body.style.backgroundImage = "url(images/doodles/13d.jpg)";
+    document.body.style.backgroundImage = "url(images/doodles/13.jpg)";
     document.querySelector(".container").style.backgroundColor =
-      "rgb(249, 236, 228, 0.6);";
+      "rgb(151, 179, 183, 0.6);";
   } else if (iconCode === "50d" || iconCode === "50n") {
     document.body.style.backgroundImage = "url(images/doodles/50d.jpg)";
     document.querySelector(".container").style.backgroundColor =
